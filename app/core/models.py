@@ -19,6 +19,9 @@ class UserManager(BaseUserManager):
         suser = self.create_user(email, password)
         suser.is_staff = True
         suser.is_superuser = True
+        suser.save(using=self._db)
+
+        return suser
 
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system."""
